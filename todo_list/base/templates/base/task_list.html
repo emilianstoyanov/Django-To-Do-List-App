@@ -3,21 +3,18 @@
 <table>
     <tr>
         <th>Item</th>
+        <th></th>
+
     </tr>
     {% for task in tasks %}
-
     <tr>
         <td>{{task.user}}</td>
     </tr>
     <tr>
         <td>{{task.title}}</td>
-    </tr>
-    <tr>
-        <td>{{task.description}}</td>
+        <td><a href="{% url 'task' task.id %}">View</a></td>
     </tr>
     {% empty %}
     <h3>No items in list</h3>
     {% endfor %}
-
-
 </table>
