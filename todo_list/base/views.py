@@ -33,7 +33,14 @@ class CustomLoginView(LoginView):
 class TaskList(OwnObjectsMixin, ListView):
     model = Task
     context_object_name = 'tasks'
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = context['tasks'].filter(user=self.request.user)
+        context['count'] = context['tasks'].filter(complete=False).count()
+        return context
+    
+    
 class TaskDetails(OwnObjectsMixin, DetailView):
     model = Task
     context_object_name = 'task'
@@ -41,12 +48,17 @@ class TaskDetails(OwnObjectsMixin, DetailView):
     
 class TaskCreate(OwnObjectsMixin, CreateView):
     model = Task
+    fields = ['title', 'description', 'complete']
     fields = '__all__'
     success_url = reverse_lazy('tasks')
     
+    def form_invalid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskCreate, self).form_valid(form)
+    
 class TaskUpdate(OwnObjectsMixin, UpdateView):
     model = Task
-    fields = '__all__'
+    fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
     
 

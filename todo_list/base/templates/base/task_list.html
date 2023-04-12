@@ -6,7 +6,8 @@
 {% endif %}
 
 <hr>
-<h1>My To Do List</h1>
+<h1>My To Do List {{color}}</h1>
+
 <a href="{% url 'task-create' %}">Add Task</a>
 
 <table>
@@ -17,7 +18,7 @@
     </tr>
     {% for task in tasks %}
     <tr>
-        <td>{{task.user}}</td>
+        <!-- <td>{{task.user}}</td> -->
     </tr>
     <tr>
         <td>{{task.title}}</td>
