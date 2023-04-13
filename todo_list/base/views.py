@@ -8,6 +8,13 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
+# Imports for Reordering Feature
+from django.views import View
+from django.shortcuts import redirect
+from django.db import transaction
+
+from .models import Task
+from .forms import PositionForm
 from .models import Task
 # Create your views here.
 
@@ -40,7 +47,6 @@ class RegisterPage(FormView):
         if user is not None:
             login(self.request, user)
         return super(RegisterPage, self).form_valid(form)
-    
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect('tasks')
@@ -68,7 +74,7 @@ class TaskList(OwnObjectsMixin, ListView):
         return context
     
     
-class TaskDetails(OwnObjectsMixin, DetailView):
+class TaskDetail(OwnObjectsMixin, DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'base/task.html'
@@ -86,10 +92,23 @@ class TaskUpdate(OwnObjectsMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
-    
 
 class TaskDelete(OwnObjectsMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
-    
+    def get_queryset(self):
+        owner = self.request.user
+        return self.model.objects.filter(user=owner)
+
+class TaskReorder(View):
+    def post(self, request):
+        form = PositionForm(request.POST)
+
+        if form.is_valid():
+            positionList = form.cleaned_data["position"].split(',')
+
+            with transaction.atomic():
+                self.request.user.set_task_order(positionList)
+
+        return redirect(reverse_lazy('tasks'))
