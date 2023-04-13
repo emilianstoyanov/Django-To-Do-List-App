@@ -29,38 +29,21 @@
             <div class="task-complete-icon"></div>
             <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i>
         </div>
+        <a class='delete-link' href="{% url 'task-delete' task.id %}">&#215;</a>
+        {% else %}
+        <div class="task-title">
+            <div class="task-incomplete-icon"></div>
+            <a href="{% url 'task-update' task.id %}">{{task}}</a>
+        </div>
+        <a class='delete-link' href="{% url 'task-delete' task.id %}">&#215;</a>
         {% endif %}
+        
     </div>
 
     {% empty %}
     <h3>No items in list</h3>
     {% endfor %}
 </div>
-
-
-
-<table>
-    <tr>
-        <th>Item</th>
-        <td>{{tasks.count}}</td>
-        <th></th>
-        <th></th>
-    </tr>
-    {% for task in tasks %}
-    <tr>
-        <!-- <td>{{task.user}}</td> -->
-    </tr>
-    <tr>
-        <td>{{task.title}}</td>
-        <!-- <td><a href="{% url 'task' task.id %}">View</a></td> -->
-        <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
-        <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
-
-    </tr>
-    {% empty %}
-    <h3>No items in list</h3>
-    {% endfor %}
-</table>
 
 {% endblock content %}
 
