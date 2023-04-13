@@ -106,13 +106,13 @@
                 padding: 20px 0px;
             }
 
-            .delete-link {
-                text-decoration: none;
-                font-weight: 900;
-                color: #cf4949;
-                font-size: 22px;
-                line-height: 0;
-                padding: 20px 0px;
+             /*Handle Classes*/
+
+            .handle {
+                display: inline-block;
+                padding: 20px 16px;
+                cursor: grab;
+                user-select: none;
             }
 
             .handle:after,
@@ -121,18 +121,76 @@
                 content: "";
             }
 
+            .handle:active,
+                .handle:active:before,
+                .handle:active:after {
+                    cursor: grabbing;
+                }
+
             .dropArea {
                 background-color: #f1f2f6;
                 color: black;
                 border: #ced6e0 1px solid;
             }
-            
+
             .selectedTask {
                 opacity: 0.6;
             }
+                
 
+            #add-link {
+                color: #EB796F;
+                text-decoration: none;
+                font-size: 42px;
+                text-shadow: 1px 1px #81413b;
+            }
 
+            #search-add-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px;
+            }
+            
+        @media screen and (max-width:320px) {
+            #search-add-wrapper {
+                padding: 10px;
+            }
+        }
 
+        input[type=text],
+        input[type=password],
+        textarea {
+            border: 1px solid #757575;
+            border-radius: 5px;
+            padding: 10px;
+            width: 90%;
+        }
+
+        label {
+            padding-top: 10px !important;
+            display: block;
+        }
+
+        ::placeholder {
+            font-weight: 300;
+            opacity: 0.5;
+        }
+
+        .button {
+            border: 1px solid #757575;
+            background-color: #FFF;
+            color: #EB796F;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
         </style>
     </head>
 
