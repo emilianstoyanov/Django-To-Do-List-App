@@ -2,8 +2,11 @@
 
 
 <div align="center">
-<img width="500" alt="image" src="#">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/68276889/232732376-dcbeb7f0-e5d1-4077-a2f6-69ee043cde55.png">
 
+
+
+![To Do List](https://user-images.githubusercontent.com/68276889/232733870-ea23bec6-19ff-481f-8396-0b55692e7cb0.gif)
 
 # To Do List
 </div>
