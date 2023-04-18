@@ -62,5 +62,22 @@ python manage.py runserver
 
 #
 
+### Create superuser (admin)
+
+--> User with the most rights :
+```bash
+python manage.py createsuperuser
+```
+
+### Login to admin panel
+
+--> Use the superuser and login to the admin panel :
+```bash
+http://127.0.0.1:8000/admin
+```
+
+
+
+
 
 
