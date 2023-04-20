@@ -63,8 +63,7 @@ python manage.py runserver
 
 #
 
-<<<<<<< HEAD
-=======
+
 ### Create superuser (admin)
 
 --> User with the most rights :
@@ -82,6 +81,6 @@ http://127.0.0.1:8000/admin
 
 
 
->>>>>>> a39f41e0b329af6b11ad2579a2c8bfc4368d98ba
+
 
 
